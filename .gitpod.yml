@@ -1,25 +1,21 @@
-﻿image:
-  file: .gitpod.Dockerfile
+image:
+  file: Dockerfile
 
 tasks:
-  - name: Install Dependencies & Run Tests
+  - name: Setup and Build
     init: |
-      # Install project dependencies
       dotnet restore
-
-      # Install Chrome and ChromeDriver
-      sudo apt-get update && sudo apt-get install -y wget unzip
-      wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -f -y
-      wget -N https://chromedriver.storage.googleapis.com/117.0.5938.62/chromedriver_linux64.zip
-      unzip chromedriver_linux64.zip
-      sudo mv chromedriver /usr/bin/chromedriver
-      sudo chmod +x /usr/bin/chromedriver
-
     command: |
-      # Run the tests
-      dotnet test
+      dotnet build
+
+vscode:
+  extensions:
+    - ms-dotnettools.csharp
 
 ports:
-  - port: 6080 # Example port if you're exposing an application or test dashboard
+  - port: 5000
     onOpen: ignore
+
+env:
+  LT_USERNAME: ${LT_USERNAME}
+  LT_ACCESS_KEY: ${LT_ACCESS_KEY}
