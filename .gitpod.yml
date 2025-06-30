@@ -6,11 +6,15 @@ tasks:
     init: |
       dotnet restore
     command: |
-      dotnet build
+      dotnet build && dotnet test
 
 vscode:
   extensions:
     - ms-dotnettools.csharp
+
+ports:
+  - port: 5000
+    onOpen: ignore
 
 env:
   LT_USERNAME: ${LT_USERNAME}
