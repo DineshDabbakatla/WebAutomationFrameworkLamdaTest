@@ -1,5 +1,9 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using WebAutomationFramework.Drivers;
 using WebAutomationFramework.Pages;
 
@@ -7,7 +11,7 @@ namespace WebAutomationFramework.Tests
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]
-    public class SimpleFormDemoTests
+    class DragAndDropSlidersTest
     {
         [Test, TestCaseSource(typeof(BrowserConfigs), nameof(BrowserConfigs.All))]
         public void ValidateSimpleFormDemo(
@@ -20,15 +24,13 @@ namespace WebAutomationFramework.Tests
             {
                 driver = WebDriverInitializer.LaunchWebDriver(browser, version, platform);
 
-                var page = new SeleniumPlaygroundPage(driver);
-                page.NavigateTo("https://www.lambdatest.com/selenium-playground");
+                var playgroundPage = new SeleniumPlaygroundPage(driver);
+                playgroundPage.NavigateTo("https://www.lambdatest.com/selenium-playground");
 
-                var simpleForm = page.ClickSimpleFormDemo();
-                var url = simpleForm.Url;
-                string msg = "Welcome to LambdaTest";
-                simpleForm.EnterMessage(msg).ClickGetCheckedValue();
-                var yourMessage = simpleForm.GetYourMessage();
-                if (simpleForm.Url.Contains("simple-form-demo") && yourMessage.Equals(msg))
+                var dragAndDropPage = playgroundPage.ClickDragAndDropSliders();
+                dragAndDropPage.DragDefaultValue15SliderTo(95);
+                var rangeValue = dragAndDropPage.RangeSuccessValue;
+                if (rangeValue == 95)
                 {
                     WebDriverInitializer.MarkTestStatus(driver, true);
                 }
@@ -36,12 +38,12 @@ namespace WebAutomationFramework.Tests
                 {
                     WebDriverInitializer.MarkTestStatus(driver, false);
                 }
-                Assert.That(simpleForm.Url, Does.Contain("simple-form-demo"), "The URL did not contain 'simple-form-demo'.");
-                Assert.That(yourMessage, Is.EqualTo(msg), "The message did not match the expected text.");
+
+                Assert.That(rangeValue, Is.EqualTo(95), "The slider did not reach the expected value of 95.");
             }
             catch (Exception ex)
             {
-                WebDriverInitializer.MarkTestStatus(driver, false, ex.Message);
+                WebDriverInitializer.MarkTestStatus(driver, false);
             }
             finally
             {
