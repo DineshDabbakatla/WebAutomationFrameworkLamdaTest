@@ -12,10 +12,6 @@ vscode:
   extensions:
     - ms-dotnettools.csharp
 
-ports:
-  - port: 5000
-    onOpen: ignore
-
 env:
   LT_USERNAME: ${LT_USERNAME}
   LT_ACCESS_KEY: ${LT_ACCESS_KEY}
