@@ -1,10 +1,10 @@
 FROM gitpod/workspace-dotnet
 
-# Optional: Set working directory
+# Set the workspace directory
 WORKDIR /workspace
 
-# Optional: Install additional tools
-RUN apt-get update && \
-    apt-get install -y curl git && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Install basic dependencies with sudo
+RUN sudo apt-get update && \
+    sudo apt-get install -y curl git && \
+    sudo apt-get clean && \
+    sudo rm -rf /var/lib/apt/lists/*
