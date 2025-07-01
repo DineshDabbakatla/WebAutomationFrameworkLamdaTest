@@ -1,18 +1,34 @@
+# Use a custom Dockerfile to set up the environment
 image:
-  file: .gitpod.Dockerfile
+  dockerfile: .gitpod.Dockerfile
 
+# Define tasks to automate during workspace startup
 tasks:
-  - init: dotnet --version
-  - init: dotnet restore
-  - command: dotnet build
-  - command: dotnet test
+  - init: |
+      # Verify .NET SDK installation
+      dotnet --info
+    command: |
+      # Restore and build project
+      dotnet restore
+      dotnet build
+      # Run tests
+      dotnet test
 
+# Configure VS Code extensions
 vscode:
   extensions:
-    - ms-dotnettools.csharp-for-open-vsx
+    - ms-dotnettools.vscode-dotnet-sdk  # Use the community-maintained C# extension
 
+# Enable prebuilds for branches and pull requests
+github:
+  prebuilds:
+    branches: true
+    pullRequests: true
+    master: true
+
+# Ports to expose for ASP.NET Core or other services
 ports:
-  - port: 5000
+  - port: 5000  # ASP.NET Core HTTP
     onOpen: open-preview
-  - port: 5001
+  - port: 5001  # ASP.NET Core HTTPS
     onOpen: ignore
