@@ -8,7 +8,7 @@ tasks:
 
 vscode:
   extensions:
-    - ms-dotnettools.vscode-dotnet-sdk
+    - ms-dotnettools.csharp
 
 ports:
   - port: 5000
