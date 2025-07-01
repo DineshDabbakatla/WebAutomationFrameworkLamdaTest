@@ -1,27 +1,15 @@
-# Specify the Docker configuration for the Gitpod workspace
 image:
-  dockerfile: .gitpod.Dockerfile
+  file: .gitpod.Dockerfile
 
-# Define tasks to run during workspace initialization and user interaction
 tasks:
-  - init: |
-      dotnet --info  # Verify .NET SDK installation
-    command: |
-      dotnet restore && dotnet build  # Restore and build the project
+  - init: dotnet --info
+  - command: dotnet restore && dotnet build
+  - command: dotnet test
 
-# Define visual studio extensions
 vscode:
   extensions:
-    - ms-dotnettools.vscode-dotnet-sdk  # Valid extension in Open VSX
+    - ms-dotnettools.vscode-dotnet-sdk
 
-# Prebuild configuration for Gitpod workflows
-github:
-  prebuilds:
-    master: true
-    branches: true
-    pullRequests: true
-
-# Ports for HTTP and HTTPS used by ASP.NET Core (or similar services)
 ports:
   - port: 5000
     onOpen: open-preview
