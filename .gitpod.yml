@@ -1,22 +1,28 @@
+# Directly use the nightly SDK image for the workspace
 image:
-  file: .gitpod.Dockerfile
+  dockerfile: .gitpod.Dockerfile
 
 tasks:
-  - name: Install and verify .NET SDK
+  - name: Verify .NET SDK
     init: |
-      # Verify .NET SDK install
+      # Check the .NET SDK version
       dotnet --version
 
-  - name: Restore, Build, and Test .NET project
+  - name: Restore and Build Project
     command: |
-      # Restore dependencies, build the application, and run tests
+      # Restore dependencies
       dotnet restore
+      # Build the project
       dotnet build
+
+  - name: Run Tests
+    command: |
+      # Run unit tests
       dotnet test
 
 vscode:
   extensions:
-    - ms-dotnettools.csharp-for-open-vsx       # Community-maintained C# extension for Open VSX
+    - ms-dotnettools.csharp-for-open-vsx       # Community-maintained C# extension from Open VSX
 
 github:
   prebuilds:
@@ -26,7 +32,7 @@ github:
     pullRequests: true
 
 ports:
-  - port: 5000 # Default port for ASP.NET Core apps
+  - port: 5000  # HTTP preview port for ASP.NET Core
     onOpen: open-preview
-  - port: 5001 # For secure HTTPS
+  - port: 5001  # HTTPS preview port
     onOpen: ignore
