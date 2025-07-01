@@ -2,20 +2,31 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - name: Setup and Build
+  - name: Install and verify .NET SDK
     init: |
-      dotnet restore
+      # Verify .NET SDK install
+      dotnet --version
+
+  - name: Restore, Build, and Test .NET project
     command: |
-      dotnet build && dotnet test
+      # Restore dependencies, build the application, and run tests
+      dotnet restore
+      dotnet build
+      dotnet test
 
 vscode:
   extensions:
-    - ms-dotnettools.csharp
+    - ms-dotnettools.csharp-for-open-vsx       # Community-maintained C# extension for Open VSX
+
+github:
+  prebuilds:
+    # Enable prebuilds for all branches and pull requests
+    master: true
+    branches: true
+    pullRequests: true
 
 ports:
-  - port: 5000
+  - port: 5000 # Default port for ASP.NET Core apps
+    onOpen: open-preview
+  - port: 5001 # For secure HTTPS
     onOpen: ignore
-
-env:
-  LT_USERNAME: ${LT_USERNAME}
-  LT_ACCESS_KEY: ${LT_ACCESS_KEY}
