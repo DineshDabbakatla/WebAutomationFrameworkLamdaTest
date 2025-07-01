@@ -1,20 +1,18 @@
-# Use the .NET 8.0.411 nightly SDK image as the base
 FROM mcr.microsoft.com/dotnet/nightly/sdk:8.0.411
 
-# Set up the working directory inside the container
+# Set the workspace directory
 WORKDIR /workspace
 
-# (Optional) Install additional tools or dependencies if needed
-# Example: If you need curl, git, or other dependencies
+# Ensure the correct environment variables for .NET are set
+ENV DOTNET_ROOT=/usr/share/dotnet
+ENV PATH="$PATH:/usr/share/dotnet"
+
+# Install basic dependencies (optional for debugging or other tools)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    git curl && \
+    curl git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Verify the .NET SDK installation
+# Verify the installation
 RUN dotnet --info
-
-# Expose ASP.NET Core ports (optional, defaults to 5000/5001)
-EXPOSE 5000
-EXPOSE 5001
