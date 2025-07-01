@@ -1,42 +1,30 @@
-# Use a custom Dockerfile for the workspace
 image:
   dockerfile: .gitpod.Dockerfile
-
-# Define the tasks to run at different points during workspace lifecycle
 tasks:
   - name: Verify .NET SDK
     init: |
       # Check the .NET SDK version
       dotnet --version
-
   - name: Restore and Build Project
     command: |
       # Restore dependencies
       dotnet restore
       # Build the project
       dotnet build
-
   - name: Run Tests
     command: |
       # Run unit tests
       dotnet test
-
-# Configure VS Code extensions
 vscode:
   extensions:
-    - ms-dotnettools.csharp-for-open-vsx       # C# Language Support (Community version from Open VSX)
-
-# Enable prebuilds for faster startup
+    - ms-dotnettools.csharp-for-open-vsx
 github:
   prebuilds:
-    # Enable prebuilds for branches, pull requests, and master/main branch
     branches: true
     pullRequests: true
     master: true
-
-# Ports to expose for ASP.NET Core projects
 ports:
-  - port: 5000  # HTTP port
+  - port: 5000
     onOpen: open-preview
-  - port: 5001  # HTTPS port
+  - port: 5001
     onOpen: ignore
