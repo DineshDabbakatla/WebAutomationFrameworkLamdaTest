@@ -1,28 +1,16 @@
 image:
-  dockerfile: .gitpod.Dockerfile
+  file: .gitpod.Dockerfile
+
 tasks:
-  - name: Verify .NET SDK
-    init: |
-      # Check the .NET SDK version
-      dotnet --version
-  - name: Restore and Build Project
-    command: |
-      # Restore dependencies
-      dotnet restore
-      # Build the project
-      dotnet build
-  - name: Run Tests
-    command: |
-      # Run unit tests
-      dotnet test
+  - init: dotnet --version
+  - init: dotnet restore
+  - command: dotnet build
+  - command: dotnet test
+
 vscode:
   extensions:
     - ms-dotnettools.csharp-for-open-vsx
-github:
-  prebuilds:
-    branches: true
-    pullRequests: true
-    master: true
+
 ports:
   - port: 5000
     onOpen: open-preview
