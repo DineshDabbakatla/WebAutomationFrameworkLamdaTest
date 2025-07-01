@@ -1,33 +1,20 @@
-# Start with the full Gitpod workspace image
-FROM gitpod/workspace-full
+# Use the .NET 8.0.411 nightly SDK image as the base
+FROM mcr.microsoft.com/dotnet/nightly/sdk:8.0.411
 
-# Install dependencies for .NET SDK
-USER root
+# Set up the working directory inside the container
+WORKDIR /workspace
 
+# (Optional) Install additional tools or dependencies if needed
+# Example: If you need curl, git, or other dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    wget \
-    apt-transport-https && \
-    \
-    # Add Microsoft package repo
-    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb && \
-    apt-get update && \
-    \
-    # Install .NET SDK
-    apt-get install -y --no-install-recommends dotnet-sdk-7.0 && \
-    \
-    # Cleanup to reduce image size
+    git curl && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -f packages-microsoft-prod.deb
+    rm -rf /var/lib/apt/lists/*
 
-# Export PATH to include .NET SDK
-ENV DOTNET_ROOT=/usr/share/dotnet
-ENV PATH="$PATH:/usr/share/dotnet"
+# Verify the .NET SDK installation
+RUN dotnet --info
 
-# Verify installation of .NET SDK
-RUN dotnet --version
-
-# Revert back to the default Gitpod user
-USER gitpod
+# Expose ASP.NET Core ports (optional, defaults to 5000/5001)
+EXPOSE 5000
+EXPOSE 5001
