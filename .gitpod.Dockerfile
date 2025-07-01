@@ -1,7 +1,7 @@
 # Start with the full Gitpod workspace image
 FROM gitpod/workspace-full
 
-# Install dependencies and .NET SDK
+# Install dependencies for .NET SDK
 USER root
 
 RUN apt-get update && \
@@ -9,10 +9,12 @@ RUN apt-get update && \
     wget \
     apt-transport-https && \
     \
-    # Add Microsoft package repository and install .NET SDK
+    # Add Microsoft package repo
     wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     apt-get update && \
+    \
+    # Install .NET SDK
     apt-get install -y --no-install-recommends dotnet-sdk-7.0 && \
     \
     # Cleanup to reduce image size
@@ -20,8 +22,12 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     rm -f packages-microsoft-prod.deb
 
-# Verify the .NET SDK is installed
+# Export PATH to include .NET SDK
+ENV DOTNET_ROOT=/usr/share/dotnet
+ENV PATH="$PATH:/usr/share/dotnet"
+
+# Verify installation of .NET SDK
 RUN dotnet --version
 
-# Revert to Gitpod's default user
+# Revert back to the default Gitpod user
 USER gitpod
