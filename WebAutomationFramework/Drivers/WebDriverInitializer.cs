@@ -59,7 +59,8 @@ namespace WebAutomationFramework.Drivers
 
         private static string GetSystemVariable(string key)
         {
-            return Environment.GetEnvironmentVariable(key);
+            //return Environment.GetEnvironmentVariable();
+            var value = Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User) ?? Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.Machine); return value;
         }
 
 
@@ -73,7 +74,7 @@ namespace WebAutomationFramework.Drivers
             if (!string.IsNullOrEmpty(reason))
             {
                 ((IJavaScriptExecutor)driver)
-                    .ExecuteScript("lambda-comment=arguments[0];", reason);
+                    .ExecuteScript("lambda-comment=arguments[0];", status);
             }
         }
 
