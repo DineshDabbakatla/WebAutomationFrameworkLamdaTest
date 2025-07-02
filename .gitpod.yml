@@ -4,7 +4,10 @@ image:
 tasks:
   - init: dotnet --info
   - command: dotnet restore && dotnet build
-  - command: dotnet test
+  - command: |
+      export LT_USERNAME=${LT_USERNAME}
+      export LT_ACCESS_KEY=${LT_ACCESS_KEY}
+      dotnet test
 
 vscode:
   extensions:
