@@ -59,8 +59,8 @@ namespace WebAutomationFramework.Drivers
 
         private static string GetSystemVariable(string key)
         {
-            //return Environment.GetEnvironmentVariable();
-            var value = Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User) ?? Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.Machine); return value;
+            return Environment.GetEnvironmentVariable(key);
+            //var value = Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User) ?? Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.Machine); return value;
         }
 
 
