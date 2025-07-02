@@ -60,10 +60,10 @@ namespace WebAutomationFramework.Drivers
 
         private static string GetSystemVariable(string key)
         {
-            var v = Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User)
-                  ?? Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.Machine);
-            return v;
+            // Use process-level environment variable (works in Gitpod and containers)
+            return Environment.GetEnvironmentVariable(key);
         }
+
 
         public static void MarkTestStatus(IWebDriver driver, bool passed, string reason = "")
         {
