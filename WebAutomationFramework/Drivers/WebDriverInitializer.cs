@@ -21,7 +21,6 @@ namespace WebAutomationFramework.Drivers
             // fetch your LT creds
             string userName = GetSystemVariable("LT_USERNAME");
             string accessKey = GetSystemVariable("LT_ACCESS_KEY");
-            Console.WriteLine($"LT_USERNAME : {userName}  LT_AccessKey : {accessKey}");
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(accessKey))
                 throw new InvalidOperationException("Set LT_USERNAME & LT_ACCESS_KEY first.");
 

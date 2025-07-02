@@ -1,9 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WebAutomationFramework.Config;
 using WebAutomationFramework.Drivers;
 using WebAutomationFramework.Pages;
 
@@ -11,44 +9,53 @@ namespace WebAutomationFramework.Tests
 {
     [TestFixture]
     [Parallelizable(ParallelScope.All)]
-    class DragAndDropSlidersTest
+    public class DragAndDropSlidersTest
     {
-        [Test, TestCaseSource(typeof(BrowserConfigs), nameof(BrowserConfigs.All))]
-        public void ValidateSimpleFormDemo(
-            string browser,
-            string version,
-            string platform)
+        private IWebDriver driver;
+        private string browser;
+        private string version;
+        private string platform;
+
+        [SetUp]
+        public void SetUp()
         {
-            IWebDriver driver = null;
+            driver = null;
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            driver?.Quit();
+            driver?.Dispose();
+        }
+
+        [Test, TestCaseSource(typeof(BrowserConfigs), nameof(BrowserConfigs.All))]
+        public void ValidateSimpleFormDemo(string browser, string version, string platform)
+        {
+            this.browser = browser;
+            this.version = version;
+            this.platform = platform;
+            var urlKey = "SeleniumPlayground";
+
             try
             {
                 driver = WebDriverInitializer.LaunchWebDriver(browser, version, platform);
 
                 var playgroundPage = new SeleniumPlaygroundPage(driver);
-                playgroundPage.NavigateTo("https://www.lambdatest.com/selenium-playground");
+                playgroundPage.NavigateTo(ConfigReader.GetUrl(urlKey));
 
                 var dragAndDropPage = playgroundPage.ClickDragAndDropSliders();
                 dragAndDropPage.DragDefaultValue15SliderTo(95);
                 var rangeValue = dragAndDropPage.RangeSuccessValue;
-                if (rangeValue == 95)
-                {
-                    WebDriverInitializer.MarkTestStatus(driver, true);
-                }
-                else
-                {
-                    WebDriverInitializer.MarkTestStatus(driver, false);
-                }
+
+                WebDriverInitializer.MarkTestStatus(driver, rangeValue == 95);
 
                 Assert.That(rangeValue, Is.EqualTo(95), "The slider did not reach the expected value of 95.");
             }
             catch (Exception ex)
             {
-                WebDriverInitializer.MarkTestStatus(driver, false);
-            }
-            finally
-            {
-                driver?.Quit();
-                driver?.Dispose();
+                WebDriverInitializer.MarkTestStatus(driver, false, ex.Message);
+                throw;
             }
         }
     }

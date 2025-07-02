@@ -1,9 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WebAutomationFramework.Config;
 using WebAutomationFramework.Drivers;
 using WebAutomationFramework.Pages;
 
@@ -13,19 +11,39 @@ namespace WebAutomationFramework.Tests
     [Parallelizable(ParallelScope.All)]
     public class InputFormSubmitTests
     {
-        [Test, TestCaseSource(typeof(BrowserConfigs), nameof(BrowserConfigs.All))]
-        public void ValidateInputFormSubmit(
-            string browser,
-            string version,
-            string platform)
+        private IWebDriver driver;
+        private string browser;
+        private string version;
+        private string platform;
+
+        [SetUp]
+        public void SetUp()
         {
-            IWebDriver driver = null;
+            driver = null;
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            driver?.Quit();
+            driver?.Dispose();
+        }
+
+        [Test, TestCaseSource(typeof(BrowserConfigs), nameof(BrowserConfigs.All))]
+        public void ValidateInputFormSubmit(string browser, string version, string platform)
+        {
+            this.browser = browser;
+            this.version = version;
+            this.platform = platform;
+            var urlKey = "SeleniumPlayground";
+
             try
             {
                 driver = WebDriverInitializer.LaunchWebDriver(browser, version, platform);
 
                 var playgroundPage = new SeleniumPlaygroundPage(driver);
-                playgroundPage.NavigateTo("https://www.lambdatest.com/selenium-playground");
+                playgroundPage.NavigateTo(ConfigReader.GetUrl(urlKey));
+
                 string name = "John Doe";
                 string email = "Example@email.com";
                 string password = "Password123";
@@ -37,47 +55,30 @@ namespace WebAutomationFramework.Tests
                 string state = "California";
                 string city = "Los Angeles";
                 string zip = "90001";
-                string expectedValidatedMessage = string.Empty;
-                string expectedSucessMessage = "Thanks for contacting us, we will get back to you shortly.";
-
-                if (browser.StartsWith("safari", StringComparison.OrdinalIgnoreCase))
-                {
-                    expectedValidatedMessage = "Fill out this field";
-                }
-                else
-                {
-                    expectedValidatedMessage = "Please fill out this field.";
-                }
+                string expectedValidatedMessage = browser.StartsWith("safari", StringComparison.OrdinalIgnoreCase)
+                    ? "Fill out this field"
+                    : "Please fill out this field.";
+                string expectedSuccessMessage = "Thanks for contacting us, we will get back to you shortly.";
 
                 var inputFormSubmitPage = playgroundPage.ClickInputFormSubmit();
                 var validationMessage = inputFormSubmitPage.DoesValidationMessageDisplayed();
+
                 inputFormSubmitPage.FillForm(name, email, password, company, country, address1, address2, websiteName, state, city, zip);
                 inputFormSubmitPage.ClickSubmitButton();
+
                 var successMessage = inputFormSubmitPage.GetSuccessMessage;
-                var isSucessMessageDisplayed = successMessage.Equals(expectedSucessMessage);
-                var isValidationMessageDisplayed = validationMessage.Equals(expectedValidatedMessage);
+                bool isSuccessMessageDisplayed = successMessage.Equals(expectedSuccessMessage);
+                bool isValidationMessageDisplayed = validationMessage.Equals(expectedValidatedMessage);
 
+                WebDriverInitializer.MarkTestStatus(driver, isSuccessMessageDisplayed && isValidationMessageDisplayed);
 
-                if (isSucessMessageDisplayed && isValidationMessageDisplayed)
-                {
-                    WebDriverInitializer.MarkTestStatus(driver, true);
-                }
-                else
-                {
-                    WebDriverInitializer.MarkTestStatus(driver, false);
-                }
-
-                Assert.That(successMessage, Is.EqualTo(expectedSucessMessage), "The success message did not match the expected text.");
-                Assert.IsTrue(validationMessage.Equals(expectedValidatedMessage), $"The validation message did not match the expected text. Expected : {expectedValidatedMessage}  but actual : {validationMessage}");
+                Assert.That(successMessage, Is.EqualTo(expectedSuccessMessage), "The success message did not match the expected text.");
+                Assert.That(validationMessage, Is.EqualTo(expectedValidatedMessage), $"The validation message did not match the expected text.");
             }
             catch (Exception ex)
             {
-                WebDriverInitializer.MarkTestStatus(driver, false);
-            }
-            finally
-            {
-                driver?.Quit();
-                driver?.Dispose();
+                WebDriverInitializer.MarkTestStatus(driver, false, ex.Message);
+                throw;
             }
         }
     }
