@@ -4,10 +4,7 @@ image:
 tasks:
   - init: dotnet --info
   - command: dotnet restore && dotnet build
-  - command: |
-      export LT_USERNAME=${LT_USERNAME}
-      export LT_ACCESS_KEY=${LT_ACCESS_KEY}
-      dotnet test
+  - command: dotnet test
 
 vscode:
   extensions:
@@ -18,3 +15,9 @@ ports:
     onOpen: open-preview
   - port: 5001
     onOpen: ignore
+
+env:
+  LT_USERNAME: ${LT_USERNAME}
+  LT_ACCESS_KEY: ${LT_ACCESS_KEY}
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "1"
+  DOTNET_NOLOGO: "1"
