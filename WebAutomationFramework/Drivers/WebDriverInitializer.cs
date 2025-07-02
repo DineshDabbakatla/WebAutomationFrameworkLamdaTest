@@ -59,24 +59,24 @@ namespace WebAutomationFramework.Drivers
 
         private static string GetSystemVariable(string key)
         {
-            // Use process-level environment variable (works in Gitpod and containers)
             return Environment.GetEnvironmentVariable(key);
         }
 
 
         public static void MarkTestStatus(IWebDriver driver, bool passed, string reason = "")
         {
-            // This JS snippet tells LambdaTest whether this session passed or failed
             string status = passed ? "passed" : "failed";
+
             ((IJavaScriptExecutor)driver)
-                .ExecuteScript($"lambda-status={status}");
+                .ExecuteScript("lambda-status=arguments[0];", status);
 
             if (!string.IsNullOrEmpty(reason))
             {
                 ((IJavaScriptExecutor)driver)
-                    .ExecuteScript($"lambda-comment={reason}");
+                    .ExecuteScript("lambda-comment=arguments[0];", reason);
             }
         }
+
 
     }
 }
