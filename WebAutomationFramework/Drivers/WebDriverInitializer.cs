@@ -36,8 +36,8 @@ namespace WebAutomationFramework.Drivers
             options.BrowserVersion = browserVersion;
             var ltOpt = new Dictionary<string, object>
             {
-                ["username"] = userName,
-                ["accessKey"] = accessKey,
+                ["username"] = "dinesh91u",
+                ["accessKey"] = "LT_5adHX7BUb3czV1FwJbagqQIF5bZajc80s2DNhjWV9Vt6Gbu",
                 ["platformName"] = platform,
                 ["project"] = "Web",
                 ["build"] = "Parallel Build",
@@ -51,8 +51,8 @@ namespace WebAutomationFramework.Drivers
             options.AddAdditionalOption("LT:Options", ltOpt);
 
             var hub = new Uri("https://hub.lambdatest.com/wd/hub");
-            var driver = new RemoteWebDriver(hub, options);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
+            var driver = new RemoteWebDriver(hub, options.ToCapabilities(), TimeSpan.FromSeconds(300));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(300);
             driver.Manage().Window.Maximize();
             return driver;
         }
