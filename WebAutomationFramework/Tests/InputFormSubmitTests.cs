@@ -36,10 +36,11 @@ namespace WebAutomationFramework.Tests
             this.version = version;
             this.platform = platform;
             var urlKey = "SeleniumPlayground";
+            var testName = $"ValidateInputFormSubmit - {browser} - {platform}";
 
             try
             {
-                driver = WebDriverInitializer.LaunchWebDriver(browser, version, platform);
+                driver = WebDriverInitializer.LaunchWebDriver(browser, version, platform, testName);
 
                 var playgroundPage = new SeleniumPlaygroundPage(driver);
                 playgroundPage.NavigateTo(ConfigReader.GetUrl(urlKey));

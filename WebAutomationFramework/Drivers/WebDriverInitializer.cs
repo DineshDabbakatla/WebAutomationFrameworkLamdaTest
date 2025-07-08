@@ -16,7 +16,8 @@ namespace WebAutomationFramework.Drivers
         public static IWebDriver LaunchWebDriver(
             string browser,
             string browserVersion,
-            string platform)
+            string platform,
+            string testName)
         {
             // fetch your LT creds
             string userName = GetSystemVariable("LT_USERNAME");
@@ -41,7 +42,7 @@ namespace WebAutomationFramework.Drivers
                 ["platformName"] = platform,
                 ["project"] = "Web",
                 ["build"] = "Parallel Build",
-                ["name"] = $"{browser} on {platform}",
+                ["name"] = testName,
                 ["w3c"] = true
             };
             if (browser.Equals("safari", StringComparison.OrdinalIgnoreCase))

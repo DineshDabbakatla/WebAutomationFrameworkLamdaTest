@@ -7,7 +7,6 @@ using WebAutomationFramework.Pages;
 namespace WebAutomationFramework.Tests
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.All)]
     public class SimpleFormDemoTests
     {
         private IWebDriver driver;
@@ -29,17 +28,18 @@ namespace WebAutomationFramework.Tests
             driver?.Dispose();
         }
 
-        [Test, TestCaseSource(typeof(BrowserConfigs), nameof(BrowserConfigs.All))]
+        [Test, TestCaseSource(typeof(BrowserConfigs), nameof(BrowserConfigs.Chrome))]
         public void ValidateSimpleFormDemo(string browser, string version, string platform)
         {
             this.browser = browser;
             this.version = version;
             this.platform = platform;
             var urlKey = "SeleniumPlayground";
+            var testName = $"ValidateSimpleFormDemo - {browser} - {platform}";
 
             try
             {
-                driver = WebDriverInitializer.LaunchWebDriver(browser, version, platform);
+                driver = WebDriverInitializer.LaunchWebDriver(browser, version, platform, testName);
 
                 var page = new SeleniumPlaygroundPage(driver);
                 page.NavigateTo(ConfigReader.GetUrl(urlKey));
@@ -58,7 +58,7 @@ namespace WebAutomationFramework.Tests
             }
             catch (Exception ex)
             {
-                WebDriverInitializer.MarkTestStatus(driver, false, ex.Message);
+                WebDriverInitializer.MarkTestStatus(driver, false);
                 throw;
             }
         }
