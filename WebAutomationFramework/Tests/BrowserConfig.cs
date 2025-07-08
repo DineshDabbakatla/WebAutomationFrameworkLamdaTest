@@ -12,7 +12,7 @@ namespace WebAutomationFramework.Tests
             new[]
             {
                 new TestCaseData("Chrome",  "latest", "Windows 10"),
-                new TestCaseData("Safari",  "latest", "macOS Catalina")
+                new TestCaseData("Safari",  "latest", "macOS Ventura")
             };
     }
 

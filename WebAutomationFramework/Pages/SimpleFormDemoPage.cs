@@ -23,8 +23,24 @@ namespace WebAutomationFramework.Pages
 
         public SimpleFormDemoPage EnterMessage(string message)
         {
-            EnterMessageTextbox.SendKeys(message);
-            return this;
+            int retries = 3; // Maximum retry attempts
+            for (int i = 0; i < retries; i++)
+            {
+                try
+                {
+                    var textbox = Driver.FindElement(By.Id(EnterMessageTextboxId)); // Re-locate the element
+                    textbox.Clear(); // Ensure any existing text is cleared
+                    textbox.SendKeys(message); // Enter the message
+                    return this; // Return current page object upon success
+                }
+                catch (StaleElementReferenceException)
+                {
+                    Console.WriteLine($"Attempt {i + 1}: Element became stale. Retrying...");
+                    if (i == retries - 1)
+                        throw; // Re-throw the exception on the final attempt
+                }
+            }
+            return this; // Fail-safe return to avoid compilation errors
         }
 
         public void ClickGetCheckedValue()
