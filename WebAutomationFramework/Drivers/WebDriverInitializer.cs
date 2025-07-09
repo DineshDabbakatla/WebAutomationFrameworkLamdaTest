@@ -53,7 +53,7 @@ namespace WebAutomationFramework.Drivers
             options.AddAdditionalOption("LT:Options", ltOpt);
 
             var hub = new Uri("https://hub.lambdatest.com/wd/hub");
-            var driver = new RemoteWebDriver(hub, options.ToCapabilities(), TimeSpan.FromSeconds(300));
+            var driver = new RemoteWebDriver(hub, options.ToCapabilities(), TimeSpan.FromMinutes(10));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(300);
             driver.Manage().Window.Maximize();
             return driver;
