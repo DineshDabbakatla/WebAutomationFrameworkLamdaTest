@@ -61,6 +61,6 @@ cd WebAutomationFramework
 
 ## Build and Restore Dependencies
 ### Restore the required NuGet dependencies:
-```C#
+```bash
 dotnet restore
 dotnet build
