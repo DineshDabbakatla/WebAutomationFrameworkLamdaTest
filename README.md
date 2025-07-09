@@ -59,33 +59,23 @@ If using Gitpod for cloud development:
 git clone https://github.com/your-username/WebAutomationFramework.git
 cd WebAutomationFramework
 ```
-### Set LambdaTest credentials:
-
-Add LT_USERNAME and LT_ACCESS_KEY as environment variables in your system or Gitpod environment.
-
-### Open in Gitpod (if using):
-
-https://gitpod.io/#https://github.com/your-repo/WebAutomationFramework
-
-### ▶️ Running Tests
-To build and run tests locally or in Gitpod:
-
-
-Tests are configured to run in parallel across browsers using NUnit's [Parallelizable] attribute.
-
-###🔐 Environment Variables
-These are required for LambdaTest integration:
-
-### Variable	Description
-LT_USERNAME	Your LambdaTest username
-LT_ACCESS_KEY	Your LambdaTest access key
-### 🧪 Gitpod Configuration
-### .gitpod.yml sets up the environment with:
-
-- .NET SDK
-- Required extensions
-- Docker-based workspace
-### Auto-run commands for build and test
+### Build and Restore Dependencies
+Restore the required NuGet dependencies:
 ```bash
-- dotnet restore
-- dotnet build
+dotnet restore
+dotnet build
+```
+### Run the Tests
+Execute all the tests using the following command:
+```bash
+dotnet test
+```
+---
+### Gitpod Quick Start
+If using Gitpod:
+
+1. Open your Gitpod workspace using:
+  ```bash
+  gitpod.io/#https://github.com/your-username/WebAutomationFramework
+  ```
+2. The `.gitpod.yml` file will automatically initialize, build, and test the application.
