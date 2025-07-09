@@ -20,7 +20,8 @@ namespace WebAutomationFramework.Pages
         private IWebElement DefaultValue15Slider => WebDriverExtensions.WaitForElement(
             Driver, By.CssSelector(DefaultValue15SliderCssSelector), TimeSpan.FromSeconds(10));
 
-        private IWebElement RangeSuccess => Driver.FindElement(By.Id(RangeSuccessId));
+        private IWebElement RangeSuccess => WebDriverExtensions.WaitForElement(
+            Driver, By.Id(RangeSuccessId), TimeSpan.FromSeconds(10));
         public int RangeSuccessValue => int.Parse(RangeSuccess.Text);
 
         public void DragDefaultValue15SliderTo(int sliderValue)

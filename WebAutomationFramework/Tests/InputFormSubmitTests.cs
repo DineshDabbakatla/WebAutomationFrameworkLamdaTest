@@ -25,8 +25,11 @@ namespace WebAutomationFramework.Tests
         [TearDown]
         public void TearDown()
         {
-            driver?.Quit();
-            driver?.Dispose();
+            if (driver != null)
+            {
+                driver.Quit();  // Ends the browser session
+                driver.Dispose(); // Releases WebDriver resources
+            }
         }
 
         [Test, TestCaseSource(typeof(BrowserConfigs), nameof(BrowserConfigs.All))]
