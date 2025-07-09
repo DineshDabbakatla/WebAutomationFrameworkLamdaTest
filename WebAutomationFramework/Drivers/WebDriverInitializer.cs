@@ -43,7 +43,7 @@ namespace WebAutomationFramework.Drivers
                 ["network"] = true,
                 ["project"] = "Web",
                 ["build"] = "Parallel Build",
-                ["name"] = testName,
+                ["name"] = $"{testName} - {DateTime.Now}",
                 ["w3c"] = true
             };
             if (browser.Equals("safari", StringComparison.OrdinalIgnoreCase))
