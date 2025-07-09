@@ -132,7 +132,7 @@ This framework supports the following browsers to ensure cross-browser compatibi
 | Chrome | Latest | Windows 11, macOS |
 | Safari | Latest | macOS Ventura |
 | Edge | Latest | Windows 11 |
-
+| Firefox | Latest | Windows & macOS |
 ---
 ## How Tests Work
 ### WebDriver Initialization
@@ -143,6 +143,6 @@ This framework supports the following browsers to ensure cross-browser compatibi
 - Each test verifies expected behavior, such as form validation, slider manipulation, or message display, using NUnit assertions.
 - LambdaTest's updates the test status as "passed" or "failed".
 
-| Firefox | Latest | Windows & macOS |
+
 
 
