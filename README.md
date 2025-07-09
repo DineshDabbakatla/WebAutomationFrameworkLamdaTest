@@ -81,26 +81,4 @@ If using Gitpod:
 2. The `.gitpod.yml` file will automatically initialize, build, and test the application.
 ---
 ## Project Structure
-WebAutomationFramework/
-├── Config
-│   ├── ConfigReader.cs         # Reads test URLs from 'appsettings.json'
-│   └── appsettings.json        # Contains base test URLs
-├── Drivers
-│   └── WebDriverInitializer.cs # Handles browser initialization and LambdaTest integration
-├── Pages
-│   ├── BasePage.cs             # Abstract class for shared page functionality
-│   ├── SeleniumPlaygroundPage.cs # Navigates to different sections of LambdaTest Playground
-│   ├── SimpleFormDemoPage.cs   # Represents Simple Form Demo page actions and states
-│   ├── InputFormSubmitPage.cs  # Represents Input Form Submission page actions
-│   ├── DragAndDropSliderPage.cs # Represents Drag & Drop Sliders page actions
-├── Tests
-│   ├── DragAndDropSlidersTest.cs # Tests Drag & Drop Sliders functionality
-│   ├── InputFormSubmitTests.cs  # Tests Input Form Submission functionality
-│   ├── SimpleFormDemoTests.cs   # Tests Simple Form Demo functionality
-│   ├── BrowserConfigs.cs        # Test configurations for supported browsers/platforms
-├── Helpers
-│   ├── ElementActionHelpers.cs  # Helper methods for interacting with elements
-│   └── WebDriverExtensions.cs   # Extension methods for WebDriver
-├── .gitpod.yml                  # Gitpod configuration for cloud development
-├── .gitpod.Dockerfile           # Dockerfile for Gitpod workspace configuration
-└── README.md                    # Project documentation
+WebAutomationFramework/ ├── Config │ ├── ConfigReader.cs # Reads test URLs from 'appsettings.json' │ └── appsettings.json # Contains base test URLs ├── Drivers │ └── WebDriverInitializer.cs # Handles browser initialization and LambdaTest integration ├── Pages │ ├── BasePage.cs # Abstract class for shared page functionality │ ├── SeleniumPlaygroundPage.cs # Navigates to different sections of LambdaTest Playground │ ├── SimpleFormDemoPage.cs # Represents Simple Form Demo page actions and states │ ├── InputFormSubmitPage.cs # Represents Input Form Submission page actions │ ├── DragAndDropSliderPage.cs # Represents Drag & Drop Sliders page actions ├── Tests │ ├── DragAndDropSlidersTest.cs # Tests Drag & Drop Sliders functionality │ ├── InputFormSubmitTests.cs # Tests Input Form Submission functionality │ ├── SimpleFormDemoTests.cs # Tests Simple Form Demo functionality │ ├── BrowserConfigs.cs # Test configurations for supported browsers/platforms ├── Helpers │ ├── ElementActionHelpers.cs # Helper methods for interacting with elements │ └── WebDriverExtensions.cs # Extension methods for WebDriver ├── .gitpod.yml # Gitpod configuration for cloud development ├── .gitpod.Dockerfile # Dockerfile for Gitpod workspace configuration └── README.md # Project documentation
