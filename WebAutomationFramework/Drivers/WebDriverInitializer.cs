@@ -37,9 +37,11 @@ namespace WebAutomationFramework.Drivers
             options.BrowserVersion = browserVersion;
             var ltOpt = new Dictionary<string, object>
             {
-                ["username"] = "dinesh91u",
-                ["accessKey"] = "LT_5adHX7BUb3czV1FwJbagqQIF5bZajc80s2DNhjWV9Vt6Gbu",
+                ["username"] = userName,
+                ["accessKey"] = accessKey,
                 ["platformName"] = platform,
+                ["visual"] = true,
+                ["network"] = true,
                 ["project"] = "Web",
                 ["build"] = "Parallel Build",
                 ["name"] = testName,
@@ -60,8 +62,8 @@ namespace WebAutomationFramework.Drivers
 
         private static string GetSystemVariable(string key)
         {
-            return Environment.GetEnvironmentVariable(key);
-            //var value = Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User) ?? Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.Machine); return value;
+           // return Environment.GetEnvironmentVariable(key);
+            var value = Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User) ?? Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.Machine); return value;
         }
 
 
