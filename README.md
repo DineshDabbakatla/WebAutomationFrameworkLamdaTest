@@ -103,3 +103,46 @@ WebAutomationFramework/
     ├── ElementActionHelpers.cs  # Helper methods for interacting with elements
     └── WebDriverExtensions.cs   # Extension methods for WebDriver
 ```
+---
+## Configuration
+### Test URL Settings
+The test URL for LambdaTest’s Selenium Playground is configured in appsettings.json:
+```json
+{
+  "TestUrls":
+  {
+    "SeleniumPlayground": "https://www.lambdatest.com/selenium-playground"
+  }
+}
+```
+### LambdaTest Credentials
+Ensure your LambdaTest keys are set as environment variables:
+
+- Example in `.gitpod.yml`:
+  ```bash
+  env:
+  LT_USERNAME: "your-username"
+  LT_ACCESS_KEY: "your-access-key"
+  ```
+---
+## Browser Support
+This framework supports the following browsers to ensure cross-browser compatibility:
+| Browser | Latest Version | Platform |
+| :-- | :-- | :-- |
+| Chrome | Latest | Windows 11, macOS |
+| Safari | Latest | macOS Ventura |
+| Edge | Latest | Windows 11 |
+| Firefox | Latest | Windows & macOS |
+---
+## How Tests Work
+### WebDriver Initialization
+- The WebDriverInitializer class dynamically configures browser settings based on BrowserConfigs.cs and initializes connections with the LambdaTest Selenium Grid.
+### Page Objects
+- Each test targets Page Object classes (e.g., SimpleFormDemoPage, InputFormSubmitPage) to interact with page elements and abstract complex actions like mouse input or element dragging.
+### Test Execution
+- Each test verifies expected behavior, such as form validation, slider manipulation, or message display, using NUnit assertions.
+- LambdaTest's updates the test status as "passed" or "failed".
+
+
+
+
