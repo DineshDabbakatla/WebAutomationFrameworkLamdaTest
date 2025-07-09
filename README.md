@@ -103,3 +103,14 @@ WebAutomationFramework/
     ├── ElementActionHelpers.cs  # Helper methods for interacting with elements
     └── WebDriverExtensions.cs   # Extension methods for WebDriver
 ```
+---
+## Configuration
+### Test URL Settings
+The test URL for LambdaTest’s Selenium Playground is configured in appsettings.json:
+```json
+{
+  "TestUrls": {
+    "SeleniumPlayground": "https://www.lambdatest.com/selenium-playground"
+  }
+}
+```
