@@ -58,3 +58,9 @@ If using Gitpod for cloud development:
 ```bash
 git clone https://github.com/your-username/WebAutomationFramework.git
 cd WebAutomationFramework
+
+## Build and Restore Dependencies
+### Restore the required NuGet dependencies:
+```C#
+dotnet restore
+dotnet build
