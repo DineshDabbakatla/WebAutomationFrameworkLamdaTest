@@ -99,10 +99,7 @@ WebAutomationFramework/
 │   ├── InputFormSubmitTests.cs  # Tests Input Form Submission functionality
 │   ├── SimpleFormDemoTests.cs   # Tests Simple Form Demo functionality
 │   ├── BrowserConfigs.cs        # Test configurations for supported browsers/platforms
-├── Helpers
-│   ├── ElementActionHelpers.cs  # Helper methods for interacting with elements
-│   └── WebDriverExtensions.cs   # Extension methods for WebDriver
-├── .gitpod.yml                  # Gitpod configuration for cloud development
-├── .gitpod.Dockerfile           # Dockerfile for Gitpod workspace configuration
-└── README.md                    # Project documentation
+└── Helpers
+    ├── ElementActionHelpers.cs  # Helper methods for interacting with elements
+    └── WebDriverExtensions.cs   # Extension methods for WebDriver
 ```
