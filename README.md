@@ -109,8 +109,29 @@ WebAutomationFramework/
 The test URL for LambdaTest’s Selenium Playground is configured in appsettings.json:
 ```json
 {
-  "TestUrls": {
+  "TestUrls":
+  {
     "SeleniumPlayground": "https://www.lambdatest.com/selenium-playground"
   }
 }
 ```
+### LambdaTest Credentials
+Ensure your LambdaTest keys are set as environment variables:
+
+- Example in `.gitpod.yml`:
+  ```bash
+  env:
+  LT_USERNAME: "your-username"
+  LT_ACCESS_KEY: "your-access-key"
+  ```
+---
+## Browser Support
+This framework supports the following browsers to ensure cross-browser compatibility:
+| Browser | Latest Version | Platform |
+| :-- | :-- | :-- |
+| Chrome | Latest | Windows 11, macOS |
+| Safari | Latest | macOS Ventura |
+| Edge | Latest | Windows 11 |
+| Firefox | Latest | Windows & macOS |
+
+
