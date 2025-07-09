@@ -132,6 +132,17 @@ This framework supports the following browsers to ensure cross-browser compatibi
 | Chrome | Latest | Windows 11, macOS |
 | Safari | Latest | macOS Ventura |
 | Edge | Latest | Windows 11 |
+
+---
+## How Tests Work
+### WebDriver Initialization
+- The WebDriverInitializer class dynamically configures browser settings based on BrowserConfigs.cs and initializes connections with the LambdaTest Selenium Grid.
+### Page Objects
+- Each test targets Page Object classes (e.g., SimpleFormDemoPage, InputFormSubmitPage) to interact with page elements and abstract complex actions like mouse input or element dragging.
+### Test Execution
+- Each test verifies expected behavior, such as form validation, slider manipulation, or message display, using NUnit assertions.
+- LambdaTest's updates the test status as "passed" or "failed".
+
 | Firefox | Latest | Windows & macOS |
 
 
