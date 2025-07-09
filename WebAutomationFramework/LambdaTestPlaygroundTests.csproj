@@ -28,7 +28,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<None Update="Config\appsettings.json">
+		<None Include="Config/appsettings.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
