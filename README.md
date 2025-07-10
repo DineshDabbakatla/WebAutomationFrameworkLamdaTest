@@ -76,6 +76,8 @@ With Gitpod, you can launch this project seamlessly in a fully-configured develo
 - Add the following environment variables:
     - LT_USERNAME: Your LambdaTest username.
     - LT_ACCESS_KEY: Your LambdaTest access key (available in the [profile page](https://accounts.lambdatest.com/detail/profile) of your LambdaTest account).
+      ![image](https://github.com/user-attachments/assets/cd86fe41-7e9f-48ba-8ca2-dee4d9b1f4db)
+
 3. Launch Test On Gitpod
   To launch this project in Gitpod and execute tests:
 1. Open the repository in Gitpod by appending /gitpod to the repository URL in GitHub. Example:
