@@ -70,7 +70,7 @@ namespace WebAutomationFramework.Drivers
             string status = passed ? "passed" : "failed";
 
             ((IJavaScriptExecutor)driver)
-                .ExecuteScript($"lambda-status={status};");
+                .ExecuteScript($"lambda-status={status}");
         }
 
 
