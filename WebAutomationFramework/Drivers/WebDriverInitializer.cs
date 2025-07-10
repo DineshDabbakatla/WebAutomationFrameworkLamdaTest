@@ -42,7 +42,7 @@ namespace WebAutomationFramework.Drivers
                 ["visual"] = true,
                 ["network"] = true,
                 ["project"] = "Web",
-                ["build"] = "Parallel Build",
+                ["build"] = $"Parallel Build - {DateTime.Now}",
                 ["name"] = $"{testName} - {DateTime.Now}",
                 ["w3c"] = true
             };

@@ -39,7 +39,7 @@ namespace WebAutomationFramework.Tests
             this.version = version;
             this.platform = platform;
             var urlKey = "SeleniumPlayground";
-            var testName = $"ValidateSimpleFormDemo - {browser} - {platform}";
+            var testName = $"ValidateDragAndDropSliderTest - {browser} - {platform}";
 
             try
             {
