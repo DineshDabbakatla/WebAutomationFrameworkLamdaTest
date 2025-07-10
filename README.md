@@ -70,24 +70,23 @@ With Gitpod, you can launch this project seamlessly in a fully-configured develo
 
 - Click on "Add Repository" and select the forked repository/ add this repository [url](https://github.com/DineshDabbakatla/WebAutomationFrameworkLamdaTest).
 2. Set Environment Variables
-Go to the settings for the forked repository on Gitpod by navigating to: Environment variables → Add Variable
+- Go to the settings for the forked repository on Gitpod by navigating to: Environment variables → Add Variable
 ![image](https://github.com/user-attachments/assets/87801eb0-26b6-4035-99e5-48871ca75a1e)
 
-Add the following environment variables:
-LT_USERNAME: Your LambdaTest username.
-LT_ACCESS_KEY: Your LambdaTest access key (available in the profile page of your LambdaTest account).
+- Add the following environment variables:
+    - LT_USERNAME: Your LambdaTest username.
+    - LT_ACCESS_KEY: Your LambdaTest access key (available in the [profile page](https://accounts.lambdatest.com/detail/profile) of your LambdaTest account).
 3. Launch Test On Gitpod
-- To launch this project in Gitpod and execute tests:
-
-Open the repository in Gitpod by appending /gitpod to the repository URL in GitHub. Example:
-
-
+  To launch this project in Gitpod and execute tests:
+1. Open the repository in Gitpod by appending /gitpod to the repository URL in GitHub. Example:
+```bash
 https://gitpod.io/#https://github.com/<your-username>/<your-repo-name>
-Gitpod will build the development container using the .gitpod.yml file included in this repository.
-Once the container builds, the following commands will execute automatically:
-dotnet restore (Restores NuGet dependencies)
-dotnet build (Builds the project)
-dotnet test (Runs all NUnit tests)
+```
+2. Gitpod will build the development container using the .gitpod.yml file included in this repository.
+3. Once the container builds, the following commands will execute automatically:
+    - dotnet restore (Restores NuGet dependencies)
+    - dotnet build (Builds the project)
+    - dotnet test (Runs all NUnit tests)
 You may also run dotnet test manually in the built Gitpod workspace terminal.
 ---
 ## Project Structure
