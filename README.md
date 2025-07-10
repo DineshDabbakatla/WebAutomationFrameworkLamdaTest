@@ -85,7 +85,10 @@ With Gitpod, you can launch this project seamlessly in a fully-configured develo
 https://gitpod.io/#https://github.com/<your-username>/<your-repo-name>
 ```
 2. Gitpod will build the development container using the .gitpod.yml file included in this repository.
-3. Once the container builds, the following commands will execute automatically:
+3. Change workspace configuration if needed, then click Continue to execute automatically
+<img width="1913" height="737" alt="image" src="https://github.com/user-attachments/assets/ae80ba2d-657c-4523-a98c-8892d98aa2fc" />
+
+4. Once the container builds, the following commands will execute automatically:
     - dotnet restore (Restores NuGet dependencies)
     - dotnet build (Builds the project)
     - dotnet test (Runs all NUnit tests)
