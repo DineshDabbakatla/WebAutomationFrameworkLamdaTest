@@ -10,7 +10,7 @@ The codebase is designed for extensibility, allowing developers to quickly add n
 
 ---
 
-## Features
+## 📋Features
 
 1. **Cross-browser testing**:
     - Perform automated tests across Chrome, Edge, Firefox, and Safari browsers.
@@ -153,6 +153,18 @@ This framework supports the following browsers to ensure cross-browser compatibi
 ### Test Execution
 - Each test verifies expected behavior, such as form validation, slider manipulation, or message display, using NUnit assertions.
 - LambdaTest's updates the test status as "passed" or "failed".
-
-
-
+---
+## 📚 Additional Notes
+- Certain tests may have browser-specific behaviors (e.g., Safari validation messages).
+- Default timeout for waiting for elements is set to 10 seconds. Modify to suit your requirements in WebDriverExtensions or Helpers.
+- All tests execute in parallel to reduce testing time.
+---
+## 💡 Resources
+- LambdaTest Documentation: https://www.lambdatest.com/support/docs/
+- Gitpod Documentation: https://www.gitpod.io/docs/
+- Selenium WebDriver: https://www.selenium.dev/documentation/
+- NUnit: https://nunit.org/
+---
+🖊️ Author
+Developed by Dinesh Dabbakatla.
+For queries or support, reach out at Dinesh.91u@gmail.com. 🚀
