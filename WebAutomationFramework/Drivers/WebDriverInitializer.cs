@@ -67,10 +67,21 @@ namespace WebAutomationFramework.Drivers
 
         public static void MarkTestStatus(IWebDriver driver, bool passed, string reason = "")
         {
-            string status = passed ? "passed" : "failed";
 
-            ((IJavaScriptExecutor)driver)
-                .ExecuteScript($"lambda-status={status}");
+            try
+            {
+                string status = passed ? "passed" : "failed";
+                ((IJavaScriptExecutor)driver).ExecuteScript($"lambda-status={status}");
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("WebDriver is already disposed. Cannot mark test status.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to mark test status: {ex.Message}");
+            }
+
         }
 
 
